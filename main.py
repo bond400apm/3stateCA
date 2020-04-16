@@ -21,7 +21,6 @@ if __name__ == "__main__":
     #print(field.config) 
 
     #Make the plot
-    plt.figure(figsize=(12,12))
     plt.matshow(field.config)
     plt.colorbar()
     plt.show()

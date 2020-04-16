@@ -16,7 +16,11 @@ def decimal_converter(Number,state=2):
 
 #Create the look up table for a certain rule
 def look_up_table(Rule):
-    neighborhoods = [(2,2),(2,1),(2,0),(1,2),(1,1),(1,0),(0,2),(0,1),(0,0)]
+    neighborhoods = [
+        (2,2),(2,1),(2,0),
+        (1,2),(1,1),(1,0),
+        (0,2),(0,1),(0,0)
+        ]
     Neighbor = decimal_converter(Rule,3)
     Table = {}
     for i in range(9):
@@ -25,7 +29,7 @@ def look_up_table(Rule):
         Table.update({key:value})
     return Table  
 
-#This is the class of Cellular
+#This is the class of Cells
 class CellularAutomata(object):
     #This stores the configure, rule number inforation
     def __init__(self,Rule_number,initial_condition):
@@ -38,12 +42,12 @@ class CellularAutomata(object):
     #This tells the Cellular how to evolve
     def evolve(self):
         last_figure = self.current_config 
-        current_figure = []
+        figure_store = []
         for i in range(self._length):
-            neighbor = (last_figure[i-1],last_figure[i]) #periodic boundary
+            neighbor = (last_figure[i-1],last_figure[i])
             value = int(look_up_table(self.Rule)[neighbor])
-            current_figure.append(value)
-        self.current_config = current_figure
+            figure_store.append(value)
+        self.current_config = figure_store
         self.config.append(self.current_config)      
         
 
